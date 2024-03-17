@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tickets",
+  "info": {
+    "singularName": "ticket",
+    "pluralName": "tickets",
+    "displayName": "Ticket",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "tickets"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "regular",
+        "standing",
+        "seated",
+        "vip"
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true
+    },
+    "purchases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::purchase.purchase",
+      "mappedBy": "tickets"
+    }
+  }
+}

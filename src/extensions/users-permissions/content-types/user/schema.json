@@ -64,6 +64,21 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
+    },
+    "purchase": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::purchase.purchase",
+      "mappedBy": "users_permissions_user"
+    },
+    "profileType": {
+      "type": "enumeration",
+      "enum": [
+        "EventOrganiser",
+        "EventAttendee"
+      ],
+      "required": false,
+      "default": "EventAttendee"
     }
   }
 }
