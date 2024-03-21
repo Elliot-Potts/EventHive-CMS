@@ -46,6 +46,12 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "events"
+    },
+    "venue": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::venue.venue",
+      "inversedBy": "event"
     }
   }
 }

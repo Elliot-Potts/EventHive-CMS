@@ -852,6 +852,11 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
+    venue: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'api::venue.venue'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -960,6 +965,50 @@ export interface ApiTicketTicket extends Schema.CollectionType {
   };
 }
 
+export interface ApiVenueVenue extends Schema.CollectionType {
+  collectionName: 'venues';
+  info: {
+    singularName: 'venue';
+    pluralName: 'venues';
+    displayName: 'Venue';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    address: Attribute.String;
+    city: Attribute.String;
+    postcode: Attribute.String;
+    description: Attribute.Text;
+    capacity: Attribute.Integer;
+    contactEmail: Attribute.String;
+    contactNumber: Attribute.String;
+    website: Attribute.String;
+    multimedia: Attribute.Media;
+    event: Attribute.Relation<
+      'api::venue.venue',
+      'oneToOne',
+      'api::event.event'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::venue.venue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::venue.venue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -982,6 +1031,7 @@ declare module '@strapi/types' {
       'api::event.event': ApiEventEvent;
       'api::purchase.purchase': ApiPurchasePurchase;
       'api::ticket.ticket': ApiTicketTicket;
+      'api::venue.venue': ApiVenueVenue;
     }
   }
 }
