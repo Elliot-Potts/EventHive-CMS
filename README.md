@@ -36,3 +36,7 @@ npm run start
 Swagger has been installed for documenting the Strapi API endpoints.
 
 https://eventhive.creeknet.xyz/documentation/v1.0.0
+
+A demo administrator account can be used to trial back-end functionality:
+
+demo@eventhive.creeknet.xyz : EventHive123
